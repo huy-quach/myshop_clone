@@ -25,9 +25,7 @@ class ProductsManager with ChangeNotifier{
   }
 
   Future<void> fetchUsersProducts() async {
-    _items = await _productsService.fetchProducts(
-      filteredByUser: true,
-    );
+    _items = await _productsService.fetchProducts();
     notifyListeners();
   }
 

@@ -7,15 +7,27 @@ import '../shared/app_drawer.dart';
 
 import 'order_item_card.dart';
 
-class OrderScreen extends StatelessWidget {
+class OrderScreen extends StatefulWidget {
 
   static const routeName = '/orders';
 
   const OrderScreen({super.key});
 
   @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
+  late Future<void> _fetchOrderItems;
+
+  @override
+  void initState(){
+    super.initState();
+    _fetchOrderItems = context.read<OrdersManager>().fetchOrders();
+  }
+  @override
   Widget build(BuildContext context) {
-    final ordersManager = OrdersManager();
+   
 
     return Scaffold(
       appBar: AppBar(

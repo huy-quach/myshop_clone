@@ -10,11 +10,24 @@ import 'cart_item_card.dart';
 
 import 'cart_screen.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
 
   static const routeName = '/cart';
   
   const CartScreen({super.key});
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  late Future<void> _fetchCartItems;
+
+  @override
+  void initState(){
+    super.initState();
+    _fetchCartItems = context.read<CartManager>().fetchCarts();
+  }
 
   @override
   Widget build(BuildContext context) {
